@@ -16,10 +16,42 @@
   box-shadow: none;
   border-color: #ffffff;
 }
+:host ::ng-deep .field-checkbox, .field-radiobutton {
+  margin-bottom: 0.5rem;
+}
+:host ::ng-deep .tag-style {
+  background-color: #DBC7FF;
+  color: #702EE6;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+:host ::ng-deep .email-style {
+  background-color: #FFE6C7;
+  color: #F58E0A;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+:host ::ng-deep .mention-style {
+  background-color: #ADF0D9;
+  color: #07A873;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+:host ::ng-deep .link-style {
+  background-color: #D6EBFF;
+  color: #007FFF;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
 .button-container{
   border-top: 1px solid #e7ecef;
   background-color: #fafbfb;
 }
 .input-container{
   width: 100%;
+}
+.avatar-disabled{
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
 }
