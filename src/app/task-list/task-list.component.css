@@ -55,3 +55,17 @@
   cursor: default;
   pointer-events: none;
 }
+.icon-only, .text-only {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:host ::ng-deep .icon-only .p-button-label {
+  display: none;
+}
+:host ::ng-deep .text-only .p-button-icon {
+  display: none;
+}
+:host ::ng-deep .icon-only .p-button-icon-left {
+  margin-right: 0;
+}

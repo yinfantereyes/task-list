@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, HostListener, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import * as feather from 'feather-icons';
 import {ButtonModule} from "primeng/button";
@@ -34,14 +34,17 @@ export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
 
   public showAddTaskForm: boolean = false;
   public taskName: string = '';
+  public taskIndex: number = -1;
   public taskList: string[] = [];
   public isInsert: boolean = false;
   public isEdit: boolean = false;
+  public isIconOnly: boolean = false;
 
   constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
+    this.isIconOnly = window.innerWidth < 1230;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -59,6 +62,7 @@ export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
 
   public hideTaskForm () {
     this.taskName = '';
+    this.taskIndex = -1;
     this.isInsert = false;
     this.isEdit = false;
     this.showAddTaskForm = false;
@@ -69,14 +73,20 @@ export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
     this.showTaskForm();
   }
 
-  public editTask(){
+  public editTask(selectedTask: string, index: number ){
     this.isEdit = true;
+    this.taskName = selectedTask;
+    this.taskIndex = index;
     this.showTaskForm();
   }
 
   public saveTask(taskName: string){
     if(taskName){
-      this.taskList.push(taskName);
+      if (this.isInsert){
+        this.taskList.push(taskName);
+      } else if (this.isEdit){
+        this.taskList[this.taskIndex] = taskName;
+      }
     }
 
     this.hideTaskForm();
@@ -99,5 +109,10 @@ export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
     formattedTask = formattedTask.replace(/\b(www\.[^\s]+)\b/g, '<span class="link-style font-bold">$&</span>');
 
     return this.sanitizer.bypassSecurityTrustHtml(formattedTask);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isIconOnly = window.innerWidth < 1230;
   }
 }
