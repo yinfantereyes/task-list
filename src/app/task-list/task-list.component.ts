@@ -30,7 +30,7 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
+export class TaskListComponent implements OnInit, AfterViewInit {
 
   public showAddTaskForm: boolean = false;
   public taskName: string = '';
@@ -47,17 +47,12 @@ export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
     this.isIconOnly = window.innerWidth < 1230;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    feather.replace();
-  }
-
   ngAfterViewInit(): void {
     feather.replace();
   }
 
   public showTaskForm () {
     this.showAddTaskForm = true;
-    feather.replace();
   }
 
   public hideTaskForm () {
@@ -107,6 +102,8 @@ export class TaskListComponent implements OnInit, AfterViewInit, OnChanges {
 
     // Formatear enlaces (solo si comienzan con "www")
     formattedTask = formattedTask.replace(/\b(www\.[^\s]+)\b/g, '<span class="link-style font-bold">$&</span>');
+
+    console.log(formattedTask)
 
     return this.sanitizer.bypassSecurityTrustHtml(formattedTask);
   }
