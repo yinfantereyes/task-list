@@ -1,0 +1,150 @@
+@if (!showAddTaskForm) {
+  <div class="grid">
+    <div class="col-12 xl:col-12" (click)="addTask()">
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-plus  text-xs font-bold" style="color: blue"></i>
+        <!-- <i data-feather="plus-square" style="color: blue"></i> -->
+        <span class="text-700 text-base font-normal mb-1"
+          >Type to add new task</span
+        >
+      </div>
+    </div>
+  </div>
+}
+
+@if (showAddTaskForm) {
+  <div class="grid">
+    <div class="col-12 xl:col-12">
+      <div class="card shadow-2">
+        <div class="flex align-items-center">
+          <div
+            class="inline-flex align-items-center justify-content-center"
+            style="width: 48px; height: 48px"
+          >
+            <i class="pi pi-plus  text-xs font-bold" style="color: blue"></i>
+            <!-- <i data-feather="plus-square" style="color: blue"></i> -->
+          </div>
+          <div class="input-container">
+            <!--          <span class="text-900 text-lg font-medium mb-2">Type to add new task</span>-->
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="taskName"
+              placeholder="Type to add new task"
+              style="width: 100%"
+            />
+          </div>
+          <div class="ml-auto mr-3">
+            <img
+              srcset="
+                https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png
+              "
+              width="25"
+              height="25"
+              shape="circle"
+              class="disabled"
+              [class.avatar-disabled]="!taskName"
+            />
+          </div>
+        </div>
+
+        <div class="flex align-items-center col-12 button-container">
+          <div class="inline-flex align-items-center justify-content-center mr-3">
+            <button
+              pButton
+              pRipple
+              label="Open"
+              icon="pi pi-arrow-up-right-and-arrow-down-left-from-center"
+              [disabled]="!taskName"
+              [ngClass]="{'icon-only': isIconOnly}"
+              class="p-button-raised ml-2 p-button-secondary mr-5"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Today"
+              icon="pi pi-calendar"
+              [disabled]="!taskName"
+              [ngClass]="{'icon-only': isIconOnly}"
+              class="p-button-outlined ml-2 p-button-secondary"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Public"
+              icon="pi pi-lock-open"
+              [disabled]="!taskName"
+              [ngClass]="{'icon-only': isIconOnly}"
+              class="p-button-outlined ml-2 p-button-secondary"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Normal"
+              icon="pi pi-sun"
+              [disabled]="!taskName"
+              [ngClass]="{'icon-only': isIconOnly}"
+              class="p-button-outlined ml-2 p-button-secondary"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Estimation"
+              icon="pi pi-info-circle"
+              [disabled]="!taskName"
+              [ngClass]="{'icon-only': isIconOnly}"
+              class="p-button-outlined ml-2 p-button-secondary"
+            ></button>
+          </div>
+          <div class="inline-flex align-items-center ml-auto mr-3">
+            @if (!isIconOnly) {
+              <button
+                pButton
+                pRipple
+                label="Cancel"
+                (click)="hideTaskForm()"
+                class="p-button-raised ml-2 p-button-secondary"
+              ></button>
+            }
+            <button
+              pButton
+              pRipple
+              [label]="taskName ? (isInsert ? 'Add' : 'Save') : 'Ok'"
+              [icon]="taskName ? (isInsert ? 'pi pi-plus' : 'pi pi-save') : 'pi pi-times'"
+              (click)="saveTask(taskName)"
+              [class]="isIconOnly ? 'icon-only' : 'text-only'"
+              class="p-button-raised ml-2"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@if (taskList.length>0) {
+  <ul>
+    @for (task of taskList; track task; let i = $index) {
+      <li class="flex items-center my-2 cursor-pointer">
+        <div class="field-checkbox">
+          <p-checkbox [binary]="true" styleClass="mr-2"></p-checkbox>
+        </div>
+        <span [innerHTML]="formatTask(task)"
+              class="text-700 text-base font-normal mb-1"
+              (click)="editTask(task, i)"
+        ></span>
+      </li>
+    }
+  </ul>
+}
+
+
+
+<!--<ul>-->
+<!--  <li class="flex items-center my-2 cursor-pointer">-->
+<!--    <div class="field-checkbox">-->
+<!--      <p-checkbox styleclass="mr-2" class="p-element"></p-checkbox>-->
+<!--    </div>-->
+<!--    <span class="text-700 text-base font-normal mb-1">escribe algo #important Welcome some_email@gmail.com and @test in google.com</span>-->
+<!--  </li>-->
+<!--</ul>-->

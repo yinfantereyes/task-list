@@ -1,0 +1,71 @@
+:host ::ng-deep .p-panel {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03), 0px 0px 2px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.12) !important;
+}
+:host ::ng-deep .p-panel .p-panel-header {
+  background: #ffffff;
+}
+:host ::ng-deep .p-inputtext {
+  border: 0px;
+  transition: none;
+  appearance: none;
+  border-radius: unset;
+}
+:host ::ng-deep .p-inputtext:enabled:focus {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+  border-color: #ffffff;
+}
+:host ::ng-deep .field-checkbox, .field-radiobutton {
+  margin-bottom: 0.5rem;
+}
+:host ::ng-deep .tag-style {
+  background-color: #DBC7FF;
+  color: #702EE6;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+:host ::ng-deep .email-style {
+  background-color: #FFE6C7;
+  color: #F58E0A;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+:host ::ng-deep .mention-style {
+  background-color: #ADF0D9;
+  color: #07A873;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+:host ::ng-deep .link-style {
+  background-color: #D6EBFF;
+  color: #007FFF;
+  border-radius: 15px;
+  padding: 1px 10px 2px;
+}
+.button-container{
+  border-top: 1px solid #e7ecef;
+  background-color: #fafbfb;
+}
+.input-container{
+  width: 100%;
+}
+.avatar-disabled{
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}
+.icon-only, .text-only {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:host ::ng-deep .icon-only .p-button-label {
+  display: none;
+}
+:host ::ng-deep .text-only .p-button-icon {
+  display: none;
+}
+:host ::ng-deep .icon-only .p-button-icon-left {
+  margin-right: 0;
+}
